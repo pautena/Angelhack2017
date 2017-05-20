@@ -1,0 +1,105 @@
+.event-show-presentation {
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+  margin-top: 40px;
+  justify-content: center;
+}
+
+.event-show-details, .event-show-picture {
+  width: 40%;
+  padding: 0 10px;
+}
+.event-show-host {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 40px 0;
+}
+
+.event-show-host-rating {
+  margin-left: 40px;
+}
+
+.event-show-host-image {
+  text-align: center;
+}
+
+.event-show-host-image img {
+  border-radius: 50%;
+  margin-bottom: 5px;
+}
+
+
+.event-show-assistants {
+  width: 80%;
+  margin: 40px auto;
+}
+.event-assistant {
+  display: flex;
+flex-direction: column;
+align-items: center;
+margin: 0 20px;
+}
+
+.event-assistant img{
+  border-radius: 50%;
+}
+
+.event-assistant-name  {
+  margin-bottom: 0;
+margin-top: 10px;
+}
+
+.event-assistant-collaboration {
+margin-top: 10px;
+}
+
+.event-assistant-list {
+  display: flex;
+justify-content: flex-start;
+}
+
+.event-collaboration {
+  margin-top: 5px;
+}
+.event-collaboration h5 {
+    text-align: center;
+}
+.event-collaboration li > i{
+    margin-left: 10px;
+    font-size: 26px;
+    color: #25bb86;
+}
+
+.event-host {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.event-host img {
+  border-radius: 50%;
+}
+
+.event-host-profile {
+  margin:0 20px;
+}
+
+.event-host-name {
+  margin-bottom: 0;
+}
+
+
+.event-description {
+  margin-top: 40px;
+}
+
+
+.event-rating {
+  display: flex;
+  margin-top: 20px;
+}
+.event-rating p {
+  margin-right: 5px;
+}
