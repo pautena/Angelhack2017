@@ -1,7 +1,8 @@
 import React, { PropTypes } from 'react'
 import { Router } from 'react-router'
 import '../styles/App.css'
-import * as firebase from 'firebase'
+import firebase from 'firebase'
+import '../styles/lewagon.css'
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 

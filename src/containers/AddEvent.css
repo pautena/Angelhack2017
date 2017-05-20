@@ -1,4 +1,6 @@
-
+.card{
+  cursor:pointer;
+}
 .form-control{
   z-index: 0 !important;
 }

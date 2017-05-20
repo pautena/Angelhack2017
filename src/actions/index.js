@@ -195,3 +195,55 @@ export const addEvent = (name,description,type,date,place,rating,numPeople,ticke
     ...event
   }
 }
+
+const requestEvents = ()=>{
+  return {
+    type:REQUEST_EVENTS
+  }
+}
+
+const requestEventsFullfilled = (events)=> {
+  return {
+    type:REQUEST_EVENTS_FULLFILLED,
+    events:events
+  }
+}
+
+const requestEventsRejected = (error) =>{
+  return {
+    type:REQUEST_EVENTS_REJECTED,
+    error:error
+  }
+}
+
+export const getEvents = ()=>{
+  return (dispatch) =>{
+    dispatch(requestEvents());
+
+    return firebase.database().ref('/event').once('value')
+      .then((snapshot) =>{
+        var obj = snapshot.val();
+        console.log("getEvents. obj: ",obj);
+        return obj;
+      })
+      .then((obj)=>{
+        var count=0;
+        var events = Object.keys(obj).map((key) => {
+          return {
+            ...obj[key],
+            _id:key,
+            id:count++
+          };
+        });
+
+        return events;
+      })
+      .then((events)=>{
+        dispatch(requestEventsFullfilled(events));
+      })
+      .catch((error)=>{
+        console.error("getEvents. error: ",error);
+        dispatch(requestEventsRejected(error));
+      });
+  }
+}

@@ -2,8 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { addEvent } from '../actions'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter,
-  Row,Col,InputGroup,InputGroupAddon,Input,Alert,
-  DropdownToggle,Dropdown,DropdownItem,DropdownMenu } from 'reactstrap'
+  Row,Col,InputGroup,InputGroupAddon,Input,Alert} from 'reactstrap'
 import ToggleSwitch from '../components/utils/ToggleSwitch'
 import EnterInput from '../components/utils/EnterInput'
 import Chip from '../components/utils/Chip'
@@ -144,9 +143,11 @@ class AddEvent extends React.Component{
       var rate = this.state.event.rating;
     }
 
-    var  eventTypes= ['Korean','Chinesse'];
+    var  eventTypes= [{id:0,name:'Korean'},{id:1,name:'Chinesse'}];
 
-    var eventTypeOptions = eventTypes.map((eventType)=><option value={eventType}/>);
+    var eventTypeOptions = eventTypes.map((eventType)=>{
+        return (<option key={eventType.id} value={eventType.name}/>);
+    });
 
     return(
       <Modal isOpen={this.props.open} toggle={this.toggle} className={this.props.className}>
