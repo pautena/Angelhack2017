@@ -5,6 +5,7 @@ import Home from './containers/Home'
 import Login from './containers/Login'
 import SignUp from './containers/SignUp'
 import ProfilePage from './containers/ProfilePage'
+import AddEventPage from './containers/AddEventPage'
 import {requireAuth} from './middleware/auth'
 
 
@@ -14,6 +15,7 @@ export const makeRoutes = () => {
       <IndexRedirect to="/home"/>
       <Route path="home" component={Home} onEnter={requireAuth}/>
       <Route path="profile" component={ProfilePage} onEnter={requireAuth}/>
+      <Route path="event/add" component={AddEventPage} onEnter={requireAuth}/>
       <Route path="login" component={Login}/>
       <Route path="signUp" component={SignUp}/>
     </Route>

@@ -31,6 +31,9 @@ class EventList extends React.Component{
               scrollIntoView={this.scrollElementIntoViewIfNeeded.bind(this)}
               onClickCard={(id)=>{console.log("asdf");this.props.onClickEvent(id);}}
               backgroundImage={event.picture?event.picture:null}
+              numPeople={event.numPeople}
+              tickets={event.tickets}
+              rating={event.rating}
               pictureUrl={this.props.profile.pictureUrl}
               pictureTooltip={username}
               onClick={() => this.props.onEventClick(event._id)}

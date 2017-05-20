@@ -3,6 +3,7 @@ import { Router } from 'react-router'
 import '../styles/App.css'
 import firebase from 'firebase'
 import '../styles/lewagon.css'
+import '../styles/colors.css'
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 

@@ -4,6 +4,7 @@ import './EventCard.css'
 import Avatar from 'react-avatar'
 import { Tooltip } from 'reactstrap'
 import FaIcon  from '@epferrari/react-fa-icon'
+import Rating from 'react-rating'
 
 
 class EventCard extends React.Component{
@@ -11,10 +12,10 @@ class EventCard extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      tooltipOpen: false
+      tooltipOpen: false,
+      showButtons:false
     };
   }
-
 
   toggle() {
     this.setState({
@@ -37,6 +38,16 @@ class EventCard extends React.Component{
     }
   }
 
+  onMouseEnter(){
+    console.log("onMouseEnter");
+    this.setState({showButtons:true});
+  }
+
+  onMouseLeave(){
+    console.log("onMouseLeave");
+    this.setState({showButtons:false});
+  }
+
   render(){
     var pictureUrl =null;
     if(this.props.pictureUrl!=null){
@@ -49,7 +60,7 @@ class EventCard extends React.Component{
             round={true}
             className="card-user avatar"
             onMouseEnter={this.toggle.bind(this)}
-            onMouseExit={this.toggle.bind(this)}>
+            onMouseLeave={this.toggle.bind(this)}>
             <Tooltip placement="right" isOpen={this.state.tooltipOpen} target="TooltipExample" toggle={this.toggle}>
               Hello world!
             </Tooltip>
@@ -75,27 +86,44 @@ class EventCard extends React.Component{
       var style={background:'rgba(222,222,222,0.32)'};
     }
 
-    console.log("EventCard. style: ",style);
+    var cardButtons=(
+      <div className="card-buttons">
+        card buttons
+      </div>
+    );
 
     return(
       <div className="card"
         onClick={()=>this.props.onClickCard(this.props.id)}
+        onMouseEnter={this.onMouseEnter.bind(this)}
+        onMouseLeave={this.onMouseLeave.bind(this)}
         style={style}>
         <div className="card-category">
           {this.props.type}
           <span style={{marginLeft:'8px'}}>
-            10<FaIcon icon="user"/>
+            {this.props.numPeople}<FaIcon icon="user"/>
           </span>
           <span style={{marginLeft:'8px'}}>
-            10<FaIcon icon="ticket"/>
+            {this.props.tickets}<FaIcon icon="ticket"/>
           </span>
+        </div>
+        <div className="card-rating">
+          <Rating
+            empty="fa fa-star-o fa-2x"
+            full="fa fa-star fa-2x"
+            start={0}
+            stop={5}
+            initialRate={this.props.rating}
+            readonly/>
         </div>
 
         <div className="card-description">
           <h2>{this.props.title}</h2>
           <p>{this.props.content}</p>
+          <p>{this.props.date}</p>
         </div>
         {avatar}
+        {this.state.cardButtons?cardButtons:null}
       </div>
     );
   }

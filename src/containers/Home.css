@@ -1,0 +1,12 @@
+
+
+.home-left{
+  position:fixed;
+  width:58%;
+  float:left;
+}
+
+.home-right{
+  width:40%;
+  float:right;
+}

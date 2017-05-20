@@ -36,11 +36,17 @@
 }
 .geosuggest__input {
   width: 100%;
+  border:none;
 }
+
 .geosuggest__input:focus {
-  border-color: #267dc0;
-  box-shadow: 0 0 0 transparent;
+  border:none;
+  border-color: inherit;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  outline: none;
 }
+
 .geosuggest__suggests {
   position: absolute;
   top: 100%;
@@ -120,4 +126,111 @@
 
 .slider{
   z-index:100;
+}
+
+.add-event-container{
+  margin-top:24px;
+}
+
+.add-event-container h1{
+  font-size: 22px;
+  margin-left:32px;
+  padding-top:6px;
+}
+
+.input-rating-label{
+  font-size:18px;
+  margin-right:16px;
+  padding-top:3px;
+}
+
+.rating-input-group{
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.add-event-left-container{
+  padding-left:32px;
+}
+
+.add-event-right-container{
+  padding-right:32px;
+}
+
+.input-group-addon{
+  background-color:#47D2C3;
+  color:white;
+}
+
+.add-event-rating-container{
+  text-align: center;
+  margin-bottom:16px;
+  font-size:24px;
+  color:#FFB62F
+}
+
+.add-event-rating{
+  margin-left:auto;
+  margin-right:auto;
+  position: relative;
+}
+
+
+/*
+CREATE BUTTON
+*/
+.btn-create-event:before {
+  font-family: 'entypo', sans-serif;
+  color: white;
+  position: absolute;
+  right: 40px;
+  font-size: 14px;
+  top: 25%;
+  z-index: 10;
+}
+
+.btn-create-event {
+  border: none;
+  outline: none;
+  background-color: #24C5B4;
+  letter-spacing: 1px;
+  color: white;
+  text-transform: uppercase;
+  font-weight: normal;
+  width: 120px;
+  max-width: 500px;
+  position: relative;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  font-size: 14px;
+  text-align: left;
+  padding: 8px 16px;
+}
+
+.btn-create-event:hover {
+  cursor: pointer;
+}
+.btn-create-event:after {
+  position: absolute;
+  content: "";
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 20%;
+  opacity:0.4;
+  background-color: #74E1D5;
+  transition: width 0.7s;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+.btn-create-event:hover:after {
+  transition: width 0.7s;
+  width: 50px;
+  cursor: pointer;
+}
+@media (max-width: 600px) {
+  .btn-create-event:hover:after {
+    width: 120px;
+  }
 }

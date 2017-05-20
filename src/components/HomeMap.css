@@ -3,9 +3,36 @@
 .home-container{
   margin-top:16px;
   height:100%;
-  width:50%;
+  width:100%;
   margin-right:16px;
   margin-left:16px;
   text-align:center;
-  position: fixed;
+}
+
+.map-container,.map-element{
+  position:fixed;
+  height:90%;
+  width:75%;
+}
+
+.distance-select{
+  margin-bottom:16px;
+  font-size: 12px;
+  border: 1px solid #c7c7c7;
+  border-radius: 15px;
+  color: black;
+  padding: 4px 16px 4px 16px;
+  width: 150px;
+  height:30px;
+  text-align: center;
+  -webkit-appearance: none;
+
+  background: transparent url("http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png") no-repeat 60px center;
+  background-color: #d0d0d0;
+  background-transparency: 0.5;
+  background-size: 10px 10px;
+  background-position: right 10px center;
+}
+.distance-select:active {
+  border: 1px solid #000;
 }

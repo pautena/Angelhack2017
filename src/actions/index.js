@@ -182,6 +182,8 @@ export const addEvent = (name,description,type,date,place,rating,numPeople,ticke
 
   console.log("owner: ",owner);
 
+  date = date.toString();
+
   var event={
     name,description,type,date,place,owner,rating,numPeople,tickets
   }

@@ -2,18 +2,11 @@ import React, { PropTypes as T } from 'react'
 import NavigationBar from '../components/NavigationBar'
 import {connect} from 'react-redux'
 import {getProfile} from '../actions'
-import AddEvent from './AddEvent'
+import {browserHistory} from 'react-router'
 
 export class Base extends React.Component {
   static contextTypes = {
     router: T.object
-  }
-
-  constructor(props){
-    super(props);
-    this.state={
-      addEventOpened:false
-    }
   }
 
   componentDidMount(){
@@ -21,8 +14,8 @@ export class Base extends React.Component {
       this.props.onGetProfile();
   }
 
-  setAddEventOpened(addEventOpened){
-    this.setState({addEventOpened:addEventOpened});
+  onClickAddEvent(){
+    browserHistory.push('/event/add');
   }
 
   render() {
@@ -38,15 +31,10 @@ export class Base extends React.Component {
         <NavigationBar
           auth={this.props.route.auth}
           profile={this.props.profile}
-          onClickOpenAddEventDialog={()=>this.setAddEventOpened(true)}/>
+          onClickOpenAddEventDialog={this.onClickAddEvent.bind(this)}/>
           <div className="container">
             {children}
           </div>
-          <AddEvent
-            open={this.state.addEventOpened}
-            profile={this.props.profile}
-            cancelCreateEvent={()=>this.setAddEventOpened(false)}
-            onFinishCreateEvent={()=>this.setAddEventOpened(false)}/>
       </div>
 
     )

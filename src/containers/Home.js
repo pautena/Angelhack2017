@@ -5,6 +5,7 @@ import EventList from '../components/EventList'
 import {connect} from 'react-redux'
 import {getEvents,getProfile} from '../actions'
 import {browserHistory} from 'react-router'
+import './Home.css'
 
 class Home extends React.Component{
 
@@ -32,21 +33,21 @@ class Home extends React.Component{
 
   render(){
     return(
-      <Row>
-        <Col xs={7}>
+      <div>
+        <div className="home-left">
           <HomeMap
             events={this.props.events}
             onMarkerEventClick={this.onMarkerEventClick.bind(this)}/>
-        </Col>
-        <Col xs={5}>
+        </div>
+        <div className="home-right">
           <EventList
             onClickEvent={this.onClickEvent.bind(this)}
             profile={this.props.profile}
             events={this.props.events}
             focusEventId={this.state.selectedEventId}
             onEventClick={(event)=>{}}/>
-        </Col>
-      </Row>
+        </div>
+      </div>
     )
   }
 }

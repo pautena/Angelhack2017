@@ -49,10 +49,10 @@ class MyGoogleMap extends React.Component{
     return(
       <GettingStartedGoogleMap
         containerElement={
-          <div style={{ height: `400px` }} />
+          <div className="map-container" />
         }
         mapElement={
-          <div style={{ height: `400px` }} />
+          <div className="map-element" />
         }
       />
     );
