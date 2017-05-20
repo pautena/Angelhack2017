@@ -1,0 +1,14 @@
+.root{
+  text-align: center;
+  max-width: 350px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.toolbar{
+  display: inline-block;
+}
+
+.login-input{
+  margin-bottom: 16px;
+}

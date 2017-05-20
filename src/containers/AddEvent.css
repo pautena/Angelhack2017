@@ -1,0 +1,121 @@
+
+.form-control{
+  z-index: 0 !important;
+}
+
+.add-event-toogle{
+  display: flex;
+  justify-content: center; /* align horizontal */
+  align-items: center; /* align vertical */
+}
+
+.add-event-toogle span{
+  margin-left:8px;
+  margin-right:8px;
+}
+
+.form-row{
+  margin-bottom:8px;
+}
+
+.input-group-addon{
+  width:150px;
+}
+
+/**
+ * The geosuggest module
+ */
+.geosuggest {
+  font-size: 18px;
+  font-size: 1rem;
+  position: relative;
+  width: 50%;
+  text-align: left;
+}
+.geosuggest__input {
+  width: 100%;
+}
+.geosuggest__input:focus {
+  border-color: #267dc0;
+  box-shadow: 0 0 0 transparent;
+}
+.geosuggest__suggests {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  max-height: 25em;
+  padding: 0;
+  margin-top: -1px;
+  background: #fff;
+  border: 2px solid #267dc0;
+  border-top-width: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  list-style: none;
+  -webkit-transition: max-height 0.2s, border 0.2s;
+          transition: max-height 0.2s, border 0.2s;
+}
+.geosuggest__suggests--hidden {
+  max-height: 0;
+  overflow: hidden;
+  border-width: 0;
+}
+
+/**
+ * A geosuggest item
+ */
+.geosuggest__item {
+  font-size: 18px;
+  font-size: 1rem;
+  padding: .5em .65em;
+  cursor: pointer;
+}
+.geosuggest__item:hover,
+.geosuggest__item:focus {
+  background: #f5f5f5;
+}
+.geosuggest__item--active {
+  background: #267dc0;
+  color: #fff;
+}
+.geosuggest__item--active:hover,
+.geosuggest__item--active:focus {
+  background: #ccc;
+}
+
+/*
+* calendar
+*/
+.Cal__Container__root{
+  width:100% !important;
+  z-index: 1 !important;
+}
+
+.Cal__Header__root{
+  height:50px !important;
+  min-height: 0 !important;
+}
+
+.Cal__Header__year{
+  font-size: 16px !important;
+  display: inline-block !important;
+}
+.Cal__Header__day{
+  font-size: 16px !important;
+  line-height: 20px !important;
+  height: 20px !important;
+  display: inline-block !important;
+}
+
+.Cal__Weekdays__day{
+  padding:6px 0 !important;
+}
+
+.Cal__Day__root{
+  font-size: 14px !important;
+}
+
+.slider{
+  z-index:100;
+}

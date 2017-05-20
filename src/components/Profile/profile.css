@@ -1,0 +1,14 @@
+.profile-jumbotron{
+  border-radius: 0;
+  text-align: center;
+}
+
+.profile-image{
+  margin-left:auto;
+  margin-right:auto;
+  cursor: pointer;
+}
+
+h1.profile-name{
+  margin-top:16px;
+}
