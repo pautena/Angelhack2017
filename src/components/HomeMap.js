@@ -9,7 +9,9 @@ class HomeMap extends React.Component{
     return(
       <div className="home-container">
         <h5>1km distance</h5>
-        <MyGoogleMap events={this.props.events}/>
+        <MyGoogleMap
+          events={this.props.events}
+          onMarkerClick={this.props.onMarkerEventClick}/>
       </div>
     )
   }

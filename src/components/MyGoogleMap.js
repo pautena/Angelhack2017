@@ -40,7 +40,7 @@ class MyGoogleMap extends React.Component{
           <Marker
             key={index}
             position={event.place.location}
-            onClick={() => props.onMarkerRightClick(index)}
+            onClick={() => this.props.onMarkerClick(event._id)}
           />
         ))}
         </GoogleMap>

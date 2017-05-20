@@ -8,6 +8,13 @@ import {browserHistory} from 'react-router'
 
 class Home extends React.Component{
 
+  constructor(props){
+    super(props);
+    this.state={
+      selectedEventId:-1
+    }
+  }
+
   componentDidMount(){
     this.props.onGetEvents();
     this.props.onGetProfile();
@@ -18,17 +25,25 @@ class Home extends React.Component{
     browserHistory.push(`/event/${eventId}`);
   }
 
+  onMarkerEventClick(eventId){
+    console.log("onMarkerEventClick. eventId: ",eventId);
+    this.setState({selectedEventId:eventId});
+  }
+
   render(){
     return(
       <Row>
         <Col xs={7}>
-          <HomeMap events={this.props.events}/>
+          <HomeMap
+            events={this.props.events}
+            onMarkerEventClick={this.onMarkerEventClick.bind(this)}/>
         </Col>
         <Col xs={5}>
           <EventList
             onClickEvent={this.onClickEvent.bind(this)}
             profile={this.props.profile}
             events={this.props.events}
+            focusEventId={this.state.selectedEventId}
             onEventClick={(event)=>{}}/>
         </Col>
       </Row>

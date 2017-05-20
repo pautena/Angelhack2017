@@ -1,7 +1,9 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
 import './EventCard.css'
 import Avatar from 'react-avatar'
 import { Tooltip } from 'reactstrap'
+import FaIcon  from '@epferrari/react-fa-icon'
 
 
 class EventCard extends React.Component{
@@ -13,10 +15,26 @@ class EventCard extends React.Component{
     };
   }
 
+
   toggle() {
     this.setState({
       tooltipOpen: !this.state.tooltipOpen
     });
+  }
+
+  componentDidMount() {
+    console.log("EventCard. props: ",this.props);
+    this.ensureVisible();
+  }
+
+  componentDidUpdate() {
+    this.ensureVisible();
+  }
+
+  ensureVisible() {
+    if (this.props.active) {
+      this.props.scrollIntoView(ReactDOM.findDOMNode(this));
+    }
   }
 
   render(){
@@ -63,7 +81,16 @@ class EventCard extends React.Component{
       <div className="card"
         onClick={()=>this.props.onClickCard(this.props.id)}
         style={style}>
-        <div className="card-category">{this.props.type}</div>
+        <div className="card-category">
+          {this.props.type}
+          <span style={{marginLeft:'8px'}}>
+            10<FaIcon icon="user"/>
+          </span>
+          <span style={{marginLeft:'8px'}}>
+            10<FaIcon icon="ticket"/>
+          </span>
+        </div>
+
         <div className="card-description">
           <h2>{this.props.title}</h2>
           <p>{this.props.content}</p>

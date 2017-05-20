@@ -1,9 +1,16 @@
 import React, { PropTypes } from 'react'
+import ReactDOM from 'react-dom'
 import EventCard from './EventCard'
 import {Row,Col} from 'reactstrap'
 import './EventList.css'
 
 class EventList extends React.Component{
+
+  scrollElementIntoViewIfNeeded(domNode) {
+    var containerDomNode = ReactDOM.findDOMNode(this);
+    // Determine if `domNode` fully fits inside `containerDomNode`.
+    // If not, set the container's scrollTop appropriately.
+  }
 
 
   render(){
@@ -20,6 +27,8 @@ class EventList extends React.Component{
               content={event.place.label}
               date={event.date}
               type={event.type}
+              active={event._id === this.props.focusEventId}
+              scrollIntoView={this.scrollElementIntoViewIfNeeded.bind(this)}
               onClickCard={(id)=>{console.log("asdf");this.props.onClickEvent(id);}}
               backgroundImage={event.picture?event.picture:null}
               pictureUrl={this.props.profile.pictureUrl}
