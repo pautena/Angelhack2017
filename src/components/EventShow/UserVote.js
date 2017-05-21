@@ -27,10 +27,10 @@ class UserVote extends React.Component{
       <Col xs={4} style={{paddingTop:'12px'}}>
         {this.props.user.firstname} {this.props.user.lastname}
       </Col>
-      <Col xs={5} style={{textSize:'24px',paddingTop:'12px'}}>
+      <Col xs={5} style={{paddingTop:'12px'}}>
         <Rating
-            empty="fa fa-star-o"
-            full="fa fa-star"
+            empty="fa fa-star-o icon-vote"
+            full="fa fa-star icon-vote"
             start={0}
             stop={5}/>
       </Col>
