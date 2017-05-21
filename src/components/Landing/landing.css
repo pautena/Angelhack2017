@@ -11,6 +11,10 @@
   margin: 60px auto;
 
 }
+
+.landing-presentation-image img{
+  width: 500px;
+}
 .landing-presentation-text {
   width: 40%;
 }

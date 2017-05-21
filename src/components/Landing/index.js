@@ -1,6 +1,5 @@
 import React from 'react'
 import './landing.css'
-import {browserHistory} from 'react-router'
 
 class Landing extends React.Component {
   constructor(props, context) {
@@ -13,10 +12,6 @@ class Landing extends React.Component {
 
     }
 
-    findParties(){
-      browserHistory.push('/home')
-    }
-
     render() {
 
         return (
@@ -26,13 +21,11 @@ class Landing extends React.Component {
                 <h1>InParties</h1>
                 <h2>Integrate foreign people with local people with themed parties</h2>
                 <div className="landing-cta">
-                  <a href="#"
-                    className="btn btn-success"
-                    onClick={this.findParties.bind(this)}>Find parties</a>
+                  <a href="#" className="btn btn-success">Find parties</a>
                 </div>
               </div>
               <div className="landing-presentation-image">
-                <img src="http://lorempixel.com/400/300/food/" />
+                <img src="https://cache-graphicslib.viator.com/graphicslib/thumbs674x446/18037/SITours/a-taste-of-south-beach-food-tour-in-miami-beach-246649.jpg" />
               </div>
             </div>
             <div className="landing-features">
@@ -56,7 +49,7 @@ class Landing extends React.Component {
             </div>
             <div className="landing-integration">
               <div className="landing-integration-image">
-                <img src="http://lorempixel.com/400/300/people/" />
+                <img src="http://lorempixel.com/400/300/people/4" />
               </div>
               <div className="landing-integration-text">
                 <h2>Aiming for social integration and inclusion</h2>
