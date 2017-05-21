@@ -23,7 +23,12 @@ class LoggedIn extends React.Component {
     }
 
     render() {
-      var name = this.props.profile.firstname+" "+this.props.profile.lastname;
+
+      if(this.props.profile.firstname){
+        var name = this.props.profile.firstname+" "+this.props.profile.lastname
+      }else{
+        name =""
+      }
 
       var pictureUrl = null;
       if(this.props.profile.pictureUrl!=null){

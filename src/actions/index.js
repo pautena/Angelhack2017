@@ -10,12 +10,22 @@ export const REQUEST_PROFILE = 'REQUEST_PROFILE'
 export const REQUEST_PROFILE_FULLFILLED = 'REQUEST_PROFILE_FULLFILLED'
 export const REQUEST_PROFILE_REJECTED = 'REQUEST_PROFILE_REJECTED'
 
+export const REQUEST_USER_PROFILE = 'REQUEST_USER_PROFILE'
+export const REQUEST_USER_PROFILE_FULLFILLED = 'REQUEST_USER_PROFILE_FULLFILLED'
+export const REQUEST_USER_PROFILE_REJECTED = 'REQUEST_USER_PROFILE_REJECTED'
+
 export const REQUEST_EVENTS = 'REQUEST_EVENTS'
 export const REQUEST_EVENTS_FULLFILLED = 'REQUEST_EVENTS_FULLFILLED'
 export const REQUEST_EVENTS_REJECTED = 'REQUEST_EVENTS_REJECTED'
 
 export const ADD_EVENT = 'ADD_EVENT'
 export const FINISH_EVENT = 'FINISH_EVENT'
+export const ON_BUY_TICKET = 'ON_BUY_TICKET'
+
+export const GET_EVENT_USERS = 'GET_EVENT_USERS'
+export const GET_EVENT_USERS_FULLFILLED = 'GET_EVENT_USERS_FULLFILLED'
+export const GET_EVENT_USERS_REJECTED = 'GET_EVENT_USERS_REJECTED'
+
 
 const requestLogin = ()=>{
   return {
@@ -97,6 +107,47 @@ export const logout = ()=>{
   }
 }
 
+const requestUserProfile = ()=>{
+  return {
+    type: REQUEST_USER_PROFILE
+  }
+}
+
+const requestUserProfileFullfilled = (profile)=>{
+  return {
+    type: REQUEST_USER_PROFILE_FULLFILLED,
+    profile:profile
+  }
+}
+
+const requestUserProfileRejected = (error)=>{
+  return {
+    type: REQUEST_USER_PROFILE_REJECTED,
+    error:error
+  }
+}
+
+export const getUserProfile = (userId)=>{
+  return (dispatch) =>{
+    dispatch(requestUserProfile());
+    return firebase.database().ref(`users/${userId}`).once('value')
+      .then((snapshot)=>{
+        var obj = snapshot.val();
+        obj.id=userId;
+
+        return obj;
+      })
+      .then((profile)=>{
+        dispatch(requestUserProfileFullfilled(profile));
+        return profile;
+      })
+      .catch((error)=>{
+        console.error("getProfile. error: ",error);
+        dispatch(requestUserProfileRejected(error));
+      });
+  }
+}
+
 const requestProfile = ()=>{
   return {
     type: REQUEST_PROFILE
@@ -125,7 +176,6 @@ export const getProfile = ()=>{
         firebase.database().ref(`users/${user.uid}`).once('value')
           .then((snapshot)=>{
             var obj = snapshot.val();
-            console.log("obj: ",obj);
             return obj;
           })
           .then((profile)=>{
@@ -191,6 +241,8 @@ export const addEvent = (name,description,type,date,place,rating,numPeople,ticke
   var ref = firebase.database().ref("event").push();
   ref.set(event);
 
+  firebase.database().ref(`user-events/${ref.key}/${owner}`).set(true);
+
   return {
     type: ADD_EVENT,
     id: ref.key,
@@ -234,7 +286,8 @@ export const getEvents = ()=>{
           return {
             ...obj[key],
             _id:key,
-            id:count++
+            id:count++,
+            users:[]
           };
         });
 
@@ -246,6 +299,77 @@ export const getEvents = ()=>{
       .catch((error)=>{
         console.error("getEvents. error: ",error);
         dispatch(requestEventsRejected(error));
+      });
+  }
+}
+
+export const buyTicket = (eventId,bring)=>{
+  var userId = firebase.auth().currentUser.uid;
+
+  console.log("userId: ",userId);
+
+  var data ={
+    bring:bring
+  }
+  firebase.database().ref(`user-events/${eventId}/${userId}`).set(data);
+  return {
+    type: ON_BUY_TICKET
+  }
+}
+
+const requestEventUsers = ()=>{
+  return{
+    type:GET_EVENT_USERS
+  }
+}
+
+const finishedGetEventUser = (eventId,user) =>{
+  return{
+    type:GET_EVENT_USERS_FULLFILLED,
+    user:user,
+    eventId:eventId
+  }
+}
+
+const requestGetEventUsersRejected = (error) =>{
+  return{
+    type:GET_EVENT_USERS_REJECTED,
+    error:error
+  }
+}
+
+export const getEventUsers = (eventId)=>{
+  return (dispatch) =>{
+    dispatch(requestEventUsers());
+
+    return firebase.database().ref(`user-events/${eventId}`).once('value')
+      .then((snapshot) =>{
+        var obj = snapshot.val();
+        console.log("getEventUsers. obj: ",obj);
+        return obj;
+      })
+      .then((obj)=>{
+        var events = Object.keys(obj).map((key) => {
+          var content = obj[key];
+          console.log("user-event: ",key,", content: ",content);
+
+          firebase.database().ref(`users/${key}`).once('value')
+          .then((snapshot)=>{
+            var obj = snapshot.val();
+            obj.id=key;
+            obj.content=content;
+            console.log("get user. obj: ",obj);
+            dispatch(finishedGetEventUser(eventId,obj))
+            return obj;
+          })
+          .catch((error)=>{
+            console.error("pick userInfo: ",error);
+          });
+        });
+      })
+      .catch((error)=>{
+        console.error("getEvents. error: ",error);
+        dispatch(requestGetEventUsersRejected(error));
       });
   }
 }

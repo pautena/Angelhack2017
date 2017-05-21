@@ -1,5 +1,5 @@
 import {ADD_EVENT, FINISH_EVENT,REQUEST_EVENTS,
-  REQUEST_EVENTS_FULLFILLED,REQUEST_EVENTS_REJECTED } from '../actions'
+  REQUEST_EVENTS_FULLFILLED,REQUEST_EVENTS_REJECTED,GET_EVENT_USERS_FULLFILLED } from '../actions'
 
   const initialState = {
   data:[],
@@ -57,6 +57,33 @@ const event = (state = {}, action) => {
   }
 }
 
+const userEvent = (state = {}, action) => {
+  switch (action.type) {
+    case GET_EVENT_USERS_FULLFILLED:
+      if (state._id !== action.eventId) {
+        return {
+          id:state._id,
+          users:[]
+        }
+      }
+
+      var users = state.users;
+      var index = users.indexOf(action.user);
+      if(index!=-1){
+        delete users[index];
+      }
+      users.push(action.user);
+      state.users = users;
+
+      return {
+        id:state._id,
+        users:users
+      }
+    default:
+      return []
+  }
+}
+
 const events = (state = initialState, action) => {
   switch (action.type) {
     case REQUEST_EVENTS:
@@ -98,6 +125,13 @@ const events = (state = initialState, action) => {
         ...state,
         data:state.data.map(t =>
           event(t, action)
+        )
+      }
+    case GET_EVENT_USERS_FULLFILLED:
+      return {
+        ...state,
+        eventUsers:state.data.map(t =>
+          userEvent(t, action)
         )
       }
     default:

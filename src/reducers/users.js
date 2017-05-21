@@ -1,10 +1,12 @@
 
 import {REQUEST_LOGIN,FINISH_LOGIN,
   REQUEST_REGISTER,FINISH_REGISTER,LOGOUT,
-  REQUEST_PROFILE,REQUEST_PROFILE_FULLFILLED,REQUEST_PROFILE_REJECTED} from '../actions'
+  REQUEST_PROFILE,REQUEST_PROFILE_FULLFILLED,REQUEST_PROFILE_REJECTED,
+REQUEST_USER_PROFILE_FULLFILLED} from '../actions'
 
 var initialState = {
-  profile:{}
+  profile:{},
+  profiles:[]
 }
 
 const user = (state = initialState, action) => {
@@ -43,6 +45,8 @@ const user = (state = initialState, action) => {
       return state.profile
     case REQUEST_PROFILE_FULLFILLED:
       return action.profile
+    case REQUEST_USER_PROFILE_FULLFILLED:
+      return action.profile
     default:
       return state
   }
@@ -77,6 +81,18 @@ const users = (state = initialState, action) => {
       ...state,
       profile:user(undefined,action)
     }
+    case REQUEST_USER_PROFILE_FULLFILLED:
+      var profiles = state.profiles;
+
+      if(profiles[action.profile.id]){
+        delete profiles[action.profile.id]
+      }
+
+      profiles.push(user(undefined,action))
+      return{
+        ...state,
+        profiles
+      }
     default:
       return state
   }

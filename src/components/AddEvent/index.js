@@ -11,7 +11,7 @@ class AddEvent extends React.Component{
     if(this.props.event.rating===-1){
       var rate = this.props.profile.stars;
     }else{
-      var rate = this.state.event.rating;
+      var rate = this.props.event.rating;
     }
 
 
