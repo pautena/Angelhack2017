@@ -7,13 +7,14 @@ import SignUp from './containers/SignUp'
 import ProfilePage from './containers/ProfilePage'
 import AddEventPage from './containers/AddEventPage'
 import {requireAuth} from './middleware/auth'
+import Landing from './components/Landing'
 import EventShow from './components/EventShow'
-
 
 export const makeRoutes = () => {
   return (
     <Route path="/" component={Base}>
       <IndexRedirect to="/home"/>
+      <Route path="landing" component={Landing} />
       <Route path="home" component={Home} onEnter={requireAuth}/>
       <Route path="profile" component={ProfilePage} onEnter={requireAuth}/>
       <Route path="event/add" component={AddEventPage} onEnter={requireAuth}/>

@@ -42,7 +42,7 @@ class NavigationBar extends React.Component{
     return(
       <Navbar color="faded" light toggleable className="navbar-inverse bg-inverse">
         <NavbarToggler right onClick={this.toggle} />
-        <NavbarBrand href="/">reactstrap</NavbarBrand>
+        <NavbarBrand href="/">InParties</NavbarBrand>
         <Collapse isOpen={this.state.isOpen} navbar>
           <Nav className="ml-auto" navbar>
             <Collapse isOpen={this.state.isOpen} navbar>

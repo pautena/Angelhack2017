@@ -1,0 +1,90 @@
+.landing {
+  padding-top: 60px;
+  background: linear-gradient(#fff,#f4fffe);
+}
+
+.landing-presentation {
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 60px auto;
+
+}
+.landing-presentation-text {
+  width: 40%;
+}
+
+.landing-presentation-image {
+  width: 40%;
+}
+
+.landing-presentation-text h1{
+  font-weight: bold;
+}
+
+.landing-presentation-text h2{
+  font-weight: 300;
+    color: #24c5b2;
+}
+
+.landing-cta {
+      margin-top: 20px;
+}
+
+
+.landing-features {
+    margin-top: 120px;
+}
+
+.landing-features h3{
+    font-size: 30px;
+    font-weight: 300;
+    text-align: center;
+    margin-bottom: 40px;
+    color: #24c5b2;
+}
+
+.features {
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.feature {
+  text-align: center;
+  width: 200px;
+  color: #24c5b2;
+}
+.feature i {
+  font-size: 50px;
+  color: #d73d32;
+  text-shadow: 1px 1px 2px #888686;
+
+}
+
+.feature h3 {
+  font-size: 20px;
+  font-weight: 300;
+}
+
+.landing-integration {
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-top: 120px;
+}
+
+.landing-integration-text {
+  width: 40%;
+  color: #24c5b2;
+}
+.landing-integration-text h2{
+  font-weight: 300;
+}
+
+.landing-integration-image {
+  width: 40%;
+}
