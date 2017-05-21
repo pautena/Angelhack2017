@@ -22,7 +22,11 @@ class VoteButton extends React.Component{
     console.log("VoteButton. props: ",this.props);
 
     var users = this.props.users.map((user)=>{
-      <UserVote user={user}/>
+      return (
+        <UserVote
+        size={50}
+        user={user}/>
+      )
     })
 
     var styles={
@@ -41,7 +45,7 @@ class VoteButton extends React.Component{
 
 
         <Modal isOpen={this.state.modalOpened} toggle={this.toggle.bind(this)}>
-          <ModalHeader toggle={this.toggle.bind(this)}>Modal title</ModalHeader>
+          <ModalHeader toggle={this.toggle.bind(this)}>Vote</ModalHeader>
           <ModalBody>
             {users}
           </ModalBody>
