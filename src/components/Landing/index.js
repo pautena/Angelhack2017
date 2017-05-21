@@ -1,5 +1,6 @@
 import React from 'react'
 import './landing.css'
+import {browserHistory} from 'react-router'
 
 class Landing extends React.Component {
   constructor(props, context) {
@@ -12,6 +13,10 @@ class Landing extends React.Component {
 
     }
 
+    findParties(){
+      browserHistory.push('/home')
+    }
+
     render() {
 
         return (
@@ -21,7 +26,9 @@ class Landing extends React.Component {
                 <h1>InParties</h1>
                 <h2>Integrate foreign people with local people with themed parties</h2>
                 <div className="landing-cta">
-                  <a href="#" className="btn btn-success">Find parties</a>
+                  <a href="#"
+                    className="btn btn-success"
+                    onClick={this.findParties.bind(this)}>Find parties</a>
                 </div>
               </div>
               <div className="landing-presentation-image">
